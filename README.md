@@ -23,19 +23,21 @@ SpeakText is a compact Windows overlay that reads the currently selected text al
 
 The settings window lets users configure the interface language, the global shortcut, startup behavior, always-on-top mode, and per-language voice profiles.
 
-![SpeakText settings window](docs/images/settings-window.png)
+![SpeakText settings window](docs/images/settings-window.jpg)
 
 ### Language Selection And Automatic Mode
 
 The overlay lets users choose a specific language manually or switch to automatic mode so SpeakText can pick the most suitable voice profile for the selected text.
 
-![SpeakText language selector](docs/images/language-selector.png)
+![SpeakText language selector](docs/images/language-selector.jpg)
 
 ## Download The Compiled App
 
-Once the repository is published on GitHub, download the latest prebuilt Windows package from the repository's **Releases** page.
+Download the latest prebuilt package from the repository's **Releases** page when a release is available.
 
-If you publish releases with the included GitHub Actions workflow, each tagged release can produce a ready-to-run `win-x64` zip package for end users.
+If there is no release yet, open the latest successful run in the **Actions** tab and download the `SpeakText-win-x64` artifact produced by the build workflow.
+
+The compiled package does not require the .NET 8 SDK. The SDK is only needed if you want to build or modify the project from source.
 
 ## Source Code
 
@@ -45,8 +47,9 @@ The full source code is available in this repository so anyone can inspect it, m
 
 ### To Use A Compiled Release
 
-- Windows
-- No .NET SDK is required if you publish a self-contained release
+- Windows 10 or Windows 11
+- No .NET SDK is required
+- No separate .NET runtime is required for the self-contained package produced by the included GitHub workflows
 
 ### To Build From Source
 
