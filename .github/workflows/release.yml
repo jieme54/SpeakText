@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore .\SpeakText.sln --configfile .\NuGet.Config
+
+      - name: Publish self-contained build
+        run: |
+          dotnet publish .\src\SpeakText.App\SpeakText.App.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -p:PublishSingleFile=true `
+            -p:IncludeNativeLibrariesForSelfExtract=true `
+            -o .\artifacts\publish\SpeakText-win-x64 `
+            --configfile .\NuGet.Config
+        shell: pwsh
+
+      - name: Create release archive
+        run: |
+          if (Test-Path .\artifacts\SpeakText-win-x64.zip) {
+            Remove-Item .\artifacts\SpeakText-win-x64.zip -Force
+          }
+          Compress-Archive -Path .\artifacts\publish\SpeakText-win-x64\* -DestinationPath .\artifacts\SpeakText-win-x64.zip
+        shell: pwsh
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SpeakText-win-x64
+          path: .\artifacts\SpeakText-win-x64.zip
+
+      - name: Attach archive to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: .\artifacts\SpeakText-win-x64.zip
