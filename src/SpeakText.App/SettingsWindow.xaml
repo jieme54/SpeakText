@@ -1,0 +1,220 @@
+<Window x:Class="SpeakText.App.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SpeakText Settings"
+        Width="760"
+        Height="730"
+        MinWidth="720"
+        MinHeight="620"
+        WindowStartupLocation="CenterOwner"
+        Background="#FFF7FAFF">
+    <Window.Resources>
+        <SolidColorBrush x:Key="AccentBlueBrush" Color="#FF1E66F5"/>
+        <SolidColorBrush x:Key="AccentBlueSoftBrush" Color="#FFEAF2FF"/>
+        <SolidColorBrush x:Key="AccentBlueBorderBrush" Color="#FFC9DAFF"/>
+        <SolidColorBrush x:Key="PrimaryTextBrush" Color="#FF16304F"/>
+        <SolidColorBrush x:Key="SecondaryTextBrush" Color="#FF5E7694"/>
+        <Style x:Key="CardBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBlueBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+        <Style x:Key="AccentButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource AccentBlueBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBlueBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style x:Key="GhostButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource AccentBlueBrush}"/>
+            <Setter Property="Background" Value="{StaticResource AccentBlueSoftBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBlueBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style x:Key="IconGhostButtonStyle" TargetType="Button" BasedOn="{StaticResource GhostButtonStyle}">
+            <Setter Property="Width" Value="34"/>
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBlueBorderBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryTextBrush}"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBlueBorderBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryTextBrush}"/>
+        </Style>
+        <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryTextBrush}"/>
+        </Style>
+        <Style x:Key="InfoBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="#FFF9FCFF"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBlueBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{StaticResource SecondaryTextBrush}"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="IsReadOnlyCaretVisible" Value="True"/>
+            <Setter Property="AcceptsReturn" Value="True"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border Style="{StaticResource CardBorderStyle}" Padding="18" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock x:Name="SettingsTitleTextBlock" FontSize="22" FontWeight="SemiBold" Foreground="{StaticResource PrimaryTextBrush}" Text="Settings"/>
+                        <TextBlock x:Name="SettingsIntroTextBlock"
+                                   Margin="0,8,0,0"
+                                   Foreground="{StaticResource SecondaryTextBrush}"
+                                   TextWrapping="Wrap"
+                                   Text="SpeakText uses local Windows voices."/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource CardBorderStyle}" Padding="18" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock x:Name="InterfaceSectionTitleTextBlock" Style="{StaticResource SectionTitleStyle}" Text="Interface"/>
+                        <Grid Margin="0,18,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="190"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="InterfaceLanguageLabelTextBlock" VerticalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}" Text="Application language"/>
+                            <ComboBox x:Name="InterfaceLanguageComboBox"
+                                      Grid.Column="1"
+                                      Margin="12,0,0,0"
+                                      Padding="8"
+                                      SelectionChanged="InterfaceLanguageComboBox_SelectionChanged"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource CardBorderStyle}" Padding="18" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock x:Name="GlobalPlaybackTitleTextBlock" Style="{StaticResource SectionTitleStyle}" Text="Global playback"/>
+                        <Grid Margin="0,18,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="190"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="HotkeyLabelTextBlock" VerticalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}" Text="Global shortcut"/>
+                            <TextBox x:Name="HotkeyTextBox" Grid.Column="1" Margin="12,0,12,0" Padding="10,8" IsReadOnly="True" Background="#FFF9FCFF"/>
+                            <Button x:Name="CaptureHotkeyButton" Grid.Column="2" Style="{StaticResource AccentButtonStyle}" Padding="14,8" Click="CaptureHotkeyButton_Click" Content="Capture"/>
+                        </Grid>
+                        <TextBlock x:Name="HotkeyHintTextBlock" Margin="202,10,0,0" Foreground="{StaticResource AccentBlueBrush}" Text="Tip"/>
+                        <CheckBox x:Name="AlwaysOnTopCheckBox" Margin="202,18,0,0" Content="Always on top"/>
+                        <CheckBox x:Name="LaunchOnWindowsStartupCheckBox" Margin="202,10,0,0" Content="Launch in background when Windows starts"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource CardBorderStyle}" Padding="18">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="VoiceProfileTitleTextBlock" Style="{StaticResource SectionTitleStyle}" Text="Voice profile"/>
+                            <Button x:Name="OpenWindowsVoicesButton"
+                                    Grid.Column="1"
+                                    Margin="0,0,10,0"
+                                    Style="{StaticResource IconGhostButtonStyle}"
+                                    Click="OpenWindowsVoicesButton_Click"
+                                    ToolTip="Open Windows voice settings"
+                                    Content="&#xE713;"/>
+                            <Button x:Name="PreviewVoiceButton" Grid.Column="2" Style="{StaticResource GhostButtonStyle}" Padding="14,8" Click="PreviewVoiceButton_Click" Content="Test voice"/>
+                        </Grid>
+                        <Grid Margin="0,18,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="190"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="ProfileLanguageLabelTextBlock" VerticalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}" Text="Language to configure"/>
+                            <ComboBox x:Name="ProfileLanguageComboBox"
+                                      Grid.Column="1"
+                                      Margin="12,0,0,0"
+                                      Padding="8"
+                                      IsTextSearchEnabled="True"
+                                      SelectionChanged="ProfileLanguageComboBox_SelectionChanged"/>
+                        </Grid>
+                        <Grid Margin="0,14,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="190"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="WindowsVoiceLabelTextBlock" VerticalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}" Text="Windows voice"/>
+                            <ComboBox x:Name="WindowsVoiceComboBox"
+                                      Grid.Column="1"
+                                      Margin="12,0,0,0"
+                                      Padding="8"
+                                      IsTextSearchEnabled="True"/>
+                        </Grid>
+                        <Grid Margin="0,14,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="190"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="72"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="SpeedLabelTextBlock" VerticalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}" Text="Speed"/>
+                            <Slider x:Name="RateSlider"
+                                    Grid.Column="1"
+                                    Margin="12,0,12,0"
+                                    Minimum="0.35"
+                                    Maximum="3.00"
+                                    TickFrequency="0.05"
+                                    SmallChange="0.05"
+                                    LargeChange="0.25"
+                                    IsSnapToTickEnabled="True"
+                                    ValueChanged="RateSlider_ValueChanged"/>
+                            <TextBlock x:Name="RateValueTextBlock" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontWeight="SemiBold" Text="x1,00"/>
+                        </Grid>
+                        <Grid Margin="0,14,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="190"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="72"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="PitchLabelTextBlock" VerticalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}" Text="Pitch"/>
+                            <Slider x:Name="PitchSlider"
+                                    Grid.Column="1"
+                                    Margin="12,0,12,0"
+                                    Minimum="-5"
+                                    Maximum="5"
+                                    TickFrequency="1"
+                                    IsSnapToTickEnabled="True"
+                                    ValueChanged="PitchSlider_ValueChanged"/>
+                            <TextBlock x:Name="PitchValueTextBlock" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontWeight="SemiBold" Text="0"/>
+                        </Grid>
+                        <TextBox x:Name="ProfileInfoTextBox" Margin="202,10,0,0" MinHeight="76" MaxHeight="190" Style="{StaticResource InfoBoxStyle}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        <DockPanel Grid.Row="1" Margin="0,18,0,0" LastChildFill="False">
+            <Button x:Name="SaveButton" DockPanel.Dock="Right" Margin="12,0,0,0" Style="{StaticResource AccentButtonStyle}" Padding="18,9" Click="SaveButton_Click" Content="Save"/>
+            <Button x:Name="CancelButton" DockPanel.Dock="Right" Style="{StaticResource GhostButtonStyle}" Padding="18,9" Click="CancelButton_Click" Content="Cancel"/>
+        </DockPanel>
+    </Grid>
+</Window>
