@@ -6,6 +6,7 @@
 .vs/
 artifacts/
 dist/
+SpeakText-win-x64/
 bin/
 obj/
 publish/
