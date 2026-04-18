@@ -41,7 +41,7 @@ The compiled package does not require the .NET 8 SDK. The SDK is only needed if 
 
 ## Source Code
 
-The full source code is available in this repository so anyone can inspect it, modify it, and build custom versions.
+The main project file now lives at the repository root as `SpeakText.csproj`. The source files remain under `src/SpeakText.App`.
 
 ## Requirements
 
@@ -65,14 +65,14 @@ The full source code is available in this repository so anyone can inspect it, m
 ## Build From Source
 
 ```powershell
-dotnet restore .\SpeakText.sln --configfile .\NuGet.Config
-dotnet build .\SpeakText.sln -c Release --no-restore --configfile .\NuGet.Config
+dotnet restore .\SpeakText.csproj --configfile .\NuGet.Config
+dotnet build .\SpeakText.csproj -c Release --no-restore --configfile .\NuGet.Config
 ```
 
 ## Run From Source
 
 ```powershell
-dotnet run --project .\src\SpeakText.App\SpeakText.App.csproj --configfile .\NuGet.Config
+dotnet run --project .\SpeakText.csproj --configfile .\NuGet.Config
 ```
 
 ## Publish A Standalone Build
@@ -80,12 +80,10 @@ dotnet run --project .\src\SpeakText.App\SpeakText.App.csproj --configfile .\NuG
 The following command creates a self-contained Windows x64 build suitable for GitHub Releases:
 
 ```powershell
-dotnet publish .\src\SpeakText.App\SpeakText.App.csproj `
+dotnet publish .\SpeakText.csproj `
   -c Release `
   -r win-x64 `
   --self-contained true `
-  -p:PublishSingleFile=true `
-  -p:IncludeNativeLibrariesForSelfExtract=true `
   -o .\artifacts\publish\SpeakText-win-x64 `
   --configfile .\NuGet.Config
 ```
