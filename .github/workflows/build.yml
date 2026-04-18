@@ -20,14 +20,14 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore dependencies
-        run: dotnet restore .\SpeakText.sln --configfile .\NuGet.Config
+        run: dotnet restore .\SpeakText.csproj --configfile .\NuGet.Config
 
       - name: Build
-        run: dotnet build .\SpeakText.sln -c Release --no-restore --configfile .\NuGet.Config
+        run: dotnet build .\SpeakText.csproj -c Release --no-restore --configfile .\NuGet.Config
 
       - name: Publish app artifact
         run: |
-          dotnet publish .\src\SpeakText.App\SpeakText.App.csproj `
+          dotnet publish .\SpeakText.csproj `
             -c Release `
             -r win-x64 `
             --self-contained true `
