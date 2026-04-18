@@ -37,11 +37,13 @@ Download the latest prebuilt package from the repository's **Releases** page whe
 
 If there is no release yet, open the latest successful run in the **Actions** tab and download the `SpeakText-win-x64` artifact produced by the build workflow.
 
+The source code stays in the repository, while the compiled application is distributed through GitHub Releases or Actions artifacts so the repository remains easier to browse and maintain.
+
 The compiled package does not require the .NET 8 SDK. The SDK is only needed if you want to build or modify the project from source.
 
 ## Source Code
 
-The main project file now lives at the repository root as `SpeakText.csproj`. The source files remain under `src/SpeakText.App`.
+The main project file now lives at the repository root as `SpeakText.csproj`. The source files remain under `src\SpeakText.App`.
 
 ## Requirements
 
@@ -84,11 +86,13 @@ dotnet publish .\SpeakText.csproj `
   -c Release `
   -r win-x64 `
   --self-contained true `
-  -o .\artifacts\publish\SpeakText-win-x64 `
+  -o .\SpeakText-win-x64 `
   --configfile .\NuGet.Config
 ```
 
-You can then zip the contents of `.\artifacts\publish\SpeakText-win-x64` and attach the archive to a GitHub Release.
+For a local build on your PC, the published application will be created in `.\SpeakText-win-x64`.
+
+The GitHub build workflow also publishes a compiled `SpeakText-win-x64` package as a downloadable artifact.
 
 ## Notes
 
