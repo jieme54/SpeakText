@@ -29,7 +29,7 @@ The settings window lets users configure the interface language, the global shor
 
 The overlay lets users choose a specific language manually or switch to automatic mode so SpeakText can pick the most suitable voice profile for the selected text.
 
-![SpeakText language selector](docs/images/language-selector.jpg)
+![SpeakText language selector](docs/images/language-selector.png)
 
 ## Download The Compiled App
 
@@ -59,7 +59,7 @@ The full source code is available in this repository so anyone can inspect it, m
 ## Default Behavior
 
 - Default shortcut: `Ctrl + Alt + Shift + F12`
-- Default selected language: French
+- Default interface language: uses the system language when SpeakText supports it, otherwise English
 - Speech engine: Windows Voices
 
 ## Build From Source
