@@ -7,10 +7,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>SpeakText</AssemblyName>
+    <ApplicationIcon>Assets\SpeakText.ico</ApplicationIcon>
+    <Title>SpeakText</Title>
+    <Product>SpeakText</Product>
+    <Company>SpeakText</Company>
+    <Description>Windows overlay that reads the current text selection aloud with local Windows voices.</Description>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="NAudio" Version="2.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\SpeakText.ico" />
   </ItemGroup>
 
 </Project>
