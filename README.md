@@ -29,7 +29,7 @@ The settings window lets users configure the interface language, the global shor
 
 The overlay lets users choose a specific language manually or switch to automatic mode so SpeakText can pick the most suitable voice profile for the selected text.
 
-![SpeakText language selector](docs/images/language-selector.png)
+![SpeakText language selector](docs/images/language-selector.jpg)
 
 ## Download The Compiled App
 
