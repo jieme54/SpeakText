@@ -19,7 +19,10 @@ public sealed class AppSettings
 
     public static AppSettings CreateDefault()
     {
-        var settings = new AppSettings();
+        var settings = new AppSettings
+        {
+            UiLanguageCode = LanguageCodeHelper.GetPreferredDefaultUiLanguageCode(),
+        };
         settings.EnsureDefaults();
         return settings;
     }
@@ -133,7 +136,7 @@ public sealed class AppSettings
 
         if (string.IsNullOrWhiteSpace(profile.DisplayName)
             || string.Equals(profile.DisplayName, "Francais", StringComparison.OrdinalIgnoreCase)
-            || string.Equals(profile.DisplayName, "Français", StringComparison.OrdinalIgnoreCase))
+            || string.Equals(profile.DisplayName, "Fran\u00e7ais", StringComparison.OrdinalIgnoreCase))
         {
             profile.DisplayName = defaults.DisplayName;
         }
