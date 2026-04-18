@@ -23,13 +23,13 @@ SpeakText is a compact Windows overlay that reads the currently selected text al
 
 The settings window lets users configure the interface language, the global shortcut, startup behavior, always-on-top mode, and per-language voice profiles.
 
-![SpeakText settings window](docs/images/settings-window.jpg)
+![SpeakText settings window](docs/images/settings-window.svg)
 
 ### Language Selection And Automatic Mode
 
 The overlay lets users choose a specific language manually or switch to automatic mode so SpeakText can pick the most suitable voice profile for the selected text.
 
-![SpeakText language selector](docs/images/language-selector.png)
+![SpeakText language selector](docs/images/language-selector.svg)
 
 ## Download The Compiled App
 
