@@ -9,17 +9,34 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
+    <EnableDefaultItems>false</EnableDefaultItems>
     <Title>SpeakText</Title>
     <Product>SpeakText</Product>
     <Company>SpeakText</Company>
     <Description>Windows overlay that reads the current text selection aloud with local Windows voices.</Description>
     <Version>1.0.0</Version>
     <FileVersion>1.0.0.0</FileVersion>
-    <DefaultItemExcludes>$(DefaultItemExcludes);artifacts\**\*;dist\**\*;tmp-remote-check\**\*;tmp-remote-check-*\**\*;src\SpeakText.App\bin\**\*;src\SpeakText.App\obj\**\*</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="Exists('src\SpeakText.App\Assets\SpeakText.ico')">
+    <ApplicationIcon>src\SpeakText.App\Assets\SpeakText.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="NAudio" Version="2.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ApplicationDefinition Include="src\SpeakText.App\App.xaml" />
+    <Page Include="src\SpeakText.App\MainWindow.xaml" />
+    <Page Include="src\SpeakText.App\SettingsWindow.xaml" />
+    <Compile Include="src\SpeakText.App\**\*.cs" Exclude="src\SpeakText.App\bin\**\*;src\SpeakText.App\obj\**\*" />
+  </ItemGroup>
+
+  <ItemGroup Condition="Exists('src\SpeakText.App\Assets\SpeakText.ico')">
+    <Resource Include="src\SpeakText.App\Assets\SpeakText.ico">
+      <Link>Assets\SpeakText.ico</Link>
+    </Resource>
   </ItemGroup>
 
 </Project>
