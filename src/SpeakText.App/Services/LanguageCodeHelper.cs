@@ -52,6 +52,12 @@ public static class LanguageCodeHelper
             && (SupportedUiLanguageCodes.Contains(normalizedCode) || TryGetUiCulture(normalizedCode, out _));
     }
 
+    public static string GetPreferredDefaultUiLanguageCode()
+    {
+        var osLanguageCode = NormalizeLanguageCode(CultureInfo.CurrentUICulture.Name);
+        return SupportsUiLanguageCode(osLanguageCode) ? osLanguageCode : "en";
+    }
+
     public static CultureInfo GetUiCulture(string uiLanguageCode)
     {
         return TryGetUiCulture(NormalizeUiLanguageCode(uiLanguageCode), out var culture)
@@ -87,18 +93,18 @@ public static class LanguageCodeHelper
         var normalizedCode = NormalizeLanguageCode(languageCode);
         return normalizedCode switch
         {
-            "fr" => "Bonjour, ici SpeakText. Ceci est un test rapide de la voix sélectionnée.",
+            "fr" => "Bonjour, ici SpeakText. Ceci est un test rapide de la voix s\u00e9lectionn\u00e9e.",
             "en" => "Hello, this is SpeakText. This is a quick preview of the selected voice.",
-            "de" => "Hallo, hier ist SpeakText. Dies ist ein kurzer Test der ausgewählten Stimme.",
-            "es" => "Hola, aquí SpeakText. Esta es una prueba rápida de la voz seleccionada.",
-            "it" => "Ciao, qui SpeakText. Questa è una rapida prova della voce selezionata.",
-            "pt" => "Olá, aqui é o SpeakText. Esta é uma amostra rápida da voz selecionada.",
-            "ar" => "مرحبا، هنا SpeakText. هذا اختبار سريع للصوت المحدد.",
-            "ca" => "Hola, soc SpeakText. Aquesta és una prova ràpida de la veu seleccionada.",
-            "el" => "Γεια σου, εδώ SpeakText. Αυτή είναι μια σύντομη δοκιμή της επιλεγμένης φωνής.",
-            "hi" => "नमस्ते, यहाँ SpeakText है। यह चुनी हुई आवाज़ का एक छोटा परीक्षण है।",
-            "ja" => "こんにちは、SpeakTextです。これは選択した音声の簡単なテストです。",
-            "zh" => "你好，这里是 SpeakText。这是所选语音的快速测试。",
+            "de" => "Hallo, hier ist SpeakText. Dies ist ein kurzer Test der ausgew\u00e4hlten Stimme.",
+            "es" => "Hola, aqu\u00ed SpeakText. Esta es una prueba r\u00e1pida de la voz seleccionada.",
+            "it" => "Ciao, qui SpeakText. Questa \u00e8 una rapida prova della voce selezionata.",
+            "pt" => "Ol\u00e1, aqui \u00e9 o SpeakText. Esta \u00e9 uma amostra r\u00e1pida da voz selecionada.",
+            "ar" => "\u0645\u0631\u062d\u0628\u0627\u060c \u0647\u0646\u0627 SpeakText. \u0647\u0630\u0627 \u0627\u062e\u062a\u0628\u0627\u0631 \u0633\u0631\u064a\u0639 \u0644\u0644\u0635\u0648\u062a \u0627\u0644\u0645\u062d\u062f\u062f.",
+            "ca" => "Hola, soc SpeakText. Aquesta \u00e9s una prova r\u00e0pida de la veu seleccionada.",
+            "el" => "\u0393\u03b5\u03b9\u03b1 \u03c3\u03bf\u03c5, \u03b5\u03b4\u03ce SpeakText. \u0391\u03c5\u03c4\u03ae \u03b5\u03af\u03bd\u03b1\u03b9 \u03bc\u03b9\u03b1 \u03c3\u03cd\u03bd\u03c4\u03bf\u03bc\u03b7 \u03b4\u03bf\u03ba\u03b9\u03bc\u03ae \u03c4\u03b7\u03c2 \u03b5\u03c0\u03b9\u03bb\u03b5\u03b3\u03bc\u03ad\u03bd\u03b7\u03c2 \u03c6\u03c9\u03bd\u03ae\u03c2.",
+            "hi" => "\u0928\u092e\u0938\u094d\u0924\u0947, \u092f\u0939\u093e\u0901 SpeakText \u0939\u0948\u0964 \u092f\u0939 \u091a\u0941\u0928\u0940 \u0939\u0941\u0908 \u0906\u0935\u093e\u091c\u093c \u0915\u093e \u090f\u0915 \u091b\u094b\u091f\u093e \u092a\u0930\u0940\u0915\u094d\u0937\u0923 \u0939\u0948\u0964",
+            "ja" => "\u3053\u3093\u306b\u3061\u306f\u3001SpeakText\u3067\u3059\u3002\u3053\u308c\u306f\u9078\u629e\u3057\u305f\u97f3\u58f0\u306e\u7c21\u5358\u306a\u30c6\u30b9\u30c8\u3067\u3059\u3002",
+            "zh" => "\u4f60\u597d\uff0c\u8fd9\u91cc\u662f SpeakText\u3002\u8fd9\u662f\u6240\u9009\u8bed\u97f3\u7684\u5feb\u901f\u6d4b\u8bd5\u3002",
             _ => BuildFallbackPreviewText(normalizedCode),
         };
     }
@@ -120,15 +126,15 @@ public static class LanguageCodeHelper
             "fr" => $"Ici, c'est {voiceName}.",
             "en" => $"This is {voiceName}.",
             "de" => $"Hier ist {voiceName}.",
-            "es" => $"Aquí habla {voiceName}.",
+            "es" => $"Aqu\u00ed habla {voiceName}.",
             "pt" => $"Aqui fala {voiceName}.",
             "it" => $"Qui parla {voiceName}.",
-            "ca" => $"Aquí parla {voiceName}.",
-            "ar" => $"هذا صوت {voiceName}.",
-            "el" => $"Εδώ μιλάει η φωνή {voiceName}.",
-            "hi" => $"यहाँ {voiceName} बोल रहा है।",
-            "ja" => $"{voiceName} です。",
-            "zh" => $"这里是 {voiceName}。",
+            "ca" => $"Aqu\u00ed parla {voiceName}.",
+            "ar" => $"\u0647\u0630\u0627 \u0635\u0648\u062a {voiceName}.",
+            "el" => $"\u0395\u03B4\u03CE \u03BC\u03B9\u03BB\u03AC\u03B5\u03B9 \u03B7 \u03C6\u03C9\u03BD\u03AE {voiceName}.",
+            "hi" => $"\u092F\u0939\u093E\u0901 {voiceName} \u092C\u094B\u0932 \u0930\u0939\u093E \u0939\u0948\u0964",
+            "ja" => $"{voiceName} \u3067\u3059\u3002",
+            "zh" => $"\u8FD9\u91CC\u662F {voiceName}\u3002",
             _ => $"This is {voiceName}.",
         };
 
