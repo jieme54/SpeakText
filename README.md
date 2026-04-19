@@ -57,7 +57,6 @@ The main project file now lives at the repository root as `SpeakText.csproj`. Th
 
 - Windows
 - .NET 8 SDK
-- Python 3
 
 ## Default Behavior
 
@@ -68,8 +67,7 @@ The main project file now lives at the repository root as `SpeakText.csproj`. Th
 ## Build From Source
 
 ```powershell
-python -m pip install Pillow
-python .\scripts\rebuild_speaktext_icon.py
+powershell -ExecutionPolicy Bypass -File .\scripts\restore_packaged_icon.ps1
 dotnet restore .\SpeakText.csproj --configfile .\NuGet.Config
 dotnet build .\SpeakText.csproj -c Release --no-restore --configfile .\NuGet.Config
 ```
