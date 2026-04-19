@@ -18,8 +18,8 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="Exists('src\SpeakText.App\Assets\SpeakTextApp.ico')">
-    <ApplicationIcon>src\SpeakText.App\Assets\SpeakTextApp.ico</ApplicationIcon>
+  <PropertyGroup Condition="Exists('src\SpeakText.App\Assets\SpeakText.ico')">
+    <ApplicationIcon>src\SpeakText.App\Assets\SpeakText.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,9 +33,9 @@
     <Compile Include="src\SpeakText.App\**\*.cs" Exclude="src\SpeakText.App\bin\**\*;src\SpeakText.App\obj\**\*" />
   </ItemGroup>
 
-  <ItemGroup Condition="Exists('src\SpeakText.App\Assets\SpeakTextApp.ico')">
-    <Resource Include="src\SpeakText.App\Assets\SpeakTextApp.ico">
-      <Link>Assets\SpeakTextApp.ico</Link>
+  <ItemGroup Condition="Exists('src\SpeakText.App\Assets\SpeakText.ico')">
+    <Resource Include="src\SpeakText.App\Assets\SpeakText.ico">
+      <Link>Assets\SpeakText.ico</Link>
     </Resource>
   </ItemGroup>
 
