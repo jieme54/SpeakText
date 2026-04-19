@@ -24,9 +24,6 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Install Pillow
-        run: python -m pip install Pillow
-
       - name: Rebuild packaged app icon
         run: python .\scripts\rebuild_speaktext_icon.py
 
