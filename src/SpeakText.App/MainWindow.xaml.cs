@@ -242,7 +242,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            var resourceInfo = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/Assets/SpeakText.ico"));
+            var resourceInfo = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/Assets/SpeakTextApp.ico"));
             if (resourceInfo is null)
             {
                 return null;
