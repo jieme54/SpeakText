@@ -14,9 +14,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Restore packaged app icon
-        run: powershell -ExecutionPolicy Bypass -File .\scripts\restore_packaged_icon.ps1
-        shell: pwsh
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
