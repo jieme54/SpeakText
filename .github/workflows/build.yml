@@ -14,17 +14,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Normalize packaged app icon
-        run: |
-          $iconPath = Join-Path (Get-Location) 'src\SpeakText.App\Assets\SpeakTextApp.ico'
-          $iconBytes = [System.IO.File]::ReadAllBytes($iconPath)
-          $hasIcoHeader = $iconBytes.Length -ge 4 -and $iconBytes[0] -eq 0 -and $iconBytes[1] -eq 0 -and $iconBytes[2] -eq 1 -and $iconBytes[3] -eq 0
-
-          if (-not $hasIcoHeader) {
-            $iconBase64 = [System.IO.File]::ReadAllText($iconPath).Trim()
-            $decodedIcon = [Convert]::FromBase64String($iconBase64)
-            [System.IO.File]::WriteAllBytes($iconPath, $decodedIcon)
-          }
+      - name: Restore packaged app icon
+        run: powershell -ExecutionPolicy Bypass -File .\scripts\restore_packaged_icon.ps1
         shell: pwsh
 
       - name: Setup .NET
